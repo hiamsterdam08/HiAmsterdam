@@ -17,7 +17,7 @@ export default function OverOnsPage() {
       <section className="container-page py-14 sm:py-20">
         <p className="eyebrow">Over ons</p>
         <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight text-balance sm:text-5xl">
-          Een vaste stoel in Amsterdam-Oost
+          Een vaste stoel in Amsterdam
         </h1>
 
         {/* Placeholder copy — replace with the real thing. */}
@@ -26,7 +26,11 @@ export default function OverOnsPage() {
             <p>Uw text hier</p>
 
             <div className="mt-2">
-              <Button asChild className="h-12 rounded-xl px-7 text-base">
+              <Button
+                asChild
+                variant="brand"
+                className="h-12 rounded-xl px-7 text-base"
+              >
                 <Link href="/maak-een-afspraak">Maak een afspraak</Link>
               </Button>
             </div>
@@ -44,16 +48,22 @@ export default function OverOnsPage() {
         </div>
       </section>
 
-      <section className="border-t">
+      {/* Same three services as the homepage tarieven, so they wear the same
+          orange rule and the same orange price — a visitor arriving here first
+          should recognise the block when they meet it there. */}
+      <section className="border-t border-brand-line">
         <div className="container-page py-14 sm:py-16">
           <h2 className="eyebrow">Wat we doen</h2>
           <div className="mt-8 grid gap-8 sm:grid-cols-3 sm:gap-10">
             {services.map((service) => (
-              <div key={service.title} className="border-t pt-4 sm:pt-5">
+              <div
+                key={service.title}
+                className="border-t border-brand-line pt-4 sm:pt-5"
+              >
                 <h3 className="text-lg font-medium tracking-tight text-balance">
                   {service.title}
                 </h3>
-                <p className="mt-2 text-xl font-medium tracking-tight tabular-nums">
+                <p className="mt-2 text-xl font-medium tracking-tight text-brand-ink tabular-nums">
                   {service.price}
                 </p>
               </div>
@@ -62,7 +72,7 @@ export default function OverOnsPage() {
         </div>
       </section>
 
-      <section className="border-t">
+      <section className="border-t border-brand-line">
         <div className="container-page py-14 sm:py-20">
           <h2 className="text-2xl font-medium tracking-tight sm:text-3xl">
             Zo vind je ons

@@ -26,7 +26,7 @@
 salon:
   naam: "Kapsalon Hi Amsterdam"
   korte_naam: "Hi Amsterdam"
-  omschrijving: "Kapsalon en barbershop in Amsterdam-Oost. Knippen, baard en kleur, met of zonder afspraak."
+  omschrijving: "Kapsalon en barbershop in Amsterdam. Knippen, baard en kleur, met of zonder afspraak."
 
 
 ### --------------------------------------------------------------------------
@@ -68,23 +68,23 @@ contact:
 ### --------------------------------------------------------------------------
 openingstijden:
   maandag:
-    open: "09:30"
+    open: "10:00"
     dicht: "19:00"
   dinsdag:
-    open: "09:30"
+    open: "10:00"
     dicht: "19:00"
   woensdag:
-    open: "09:30"
+    open: "10:00"
     dicht: "19:00"
   donderdag:
-    open: "09:30"
+    open: "10:00"
     dicht: "19:00"
   vrijdag:
-    open: "09:30"
+    open: "10:00"
     dicht: "19:00"
   zaterdag:
-    open: "09:00"
-    dicht: "18:30"
+    open: "10:00"
+    dicht: "19:00"
   zondag: gesloten
 
 

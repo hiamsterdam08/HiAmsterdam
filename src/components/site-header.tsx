@@ -26,6 +26,14 @@ const FALLBACK_REVEAL_PX = 64
 // that show it from the start has to reserve exactly this much.
 const BAR_HEIGHT = "h-16 sm:h-18"
 
+// The bar's own link set rather than navLinks: the labels are shortened to fit
+// a single row, and Home is left out because the logo beside them already goes
+// there. The sheet, which has the room, uses the full navLinks.
+const headerLinks = [
+  { href: "/over-ons", label: "Over ons" },
+  { href: "/maak-een-afspraak", label: "Afspraak" },
+] as const
+
 /**
  * True once the page has scrolled past the hero, or past a sliver without one.
  * Skipped entirely when `enabled` is false — those pages show the bar outright.
@@ -102,9 +110,11 @@ function MobileNav() {
                 onClick={() => setOpen(false)}
                 className={cn(
                   "border-b py-4 text-base transition-colors last:border-b-0",
+                  // The page you are on is named in orange — the sheet has no
+                  // room for a marker beside the label, so the colour is it.
                   current
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "border-brand-line font-medium text-brand-ink"
+                    : "text-muted-foreground hover:text-brand-ink"
                 )}
               >
                 {link.label}
@@ -131,7 +141,10 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b bg-band",
+          // The 2px orange underline is the bar's whole edge treatment, and the
+          // closing band at the foot of the home page wears the same rule on
+          // its top — the page is bracketed top and bottom by the accent.
+          "fixed inset-x-0 top-0 z-50 border-b-2 border-brand bg-band",
           "transition-[opacity,transform,visibility] duration-300 ease-out motion-reduce:transition-none",
           // `invisible` rather than opacity alone, so the links leave the tab
           // order and the screen reader while the bar is tucked away.
@@ -150,19 +163,28 @@ export function SiteHeader() {
             <SiteLogo />
           </Link>
 
+          {/* Orange marks the page you are on, and nothing else — the same rule
+              the sheet follows. On the home page that leaves both links gray,
+              which is right: the logo is what's current there. */}
           <nav className="hidden items-center gap-5 text-sm sm:flex sm:gap-7">
-            <Link
-              href="/over-ons"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Over ons
-            </Link>
-            <Link
-              href="/maak-een-afspraak"
-              className="transition-opacity hover:opacity-70"
-            >
-              Afspraak
-            </Link>
+            {headerLinks.map((link) => {
+              const current = pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={current ? "page" : undefined}
+                  className={cn(
+                    "transition-colors",
+                    current
+                      ? "font-medium text-brand-ink"
+                      : "text-muted-foreground hover:text-brand-ink"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </nav>
 
           <MobileNav />

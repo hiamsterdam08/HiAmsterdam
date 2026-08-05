@@ -51,18 +51,18 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg">
-            Uw kapsalon in Amsterdam-Oost. Met een afspraak of loop
+            Uw kapsalon in Amsterdam. Met een afspraak of loop
             gewoon binnen. {formattedAddress}.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center">
-            <Button asChild className={ctaClassName}>
+            <Button asChild variant="brand" className={ctaClassName}>
               <Link href="/maak-een-afspraak">Maak een afspraak</Link>
             </Button>
             <Button
               asChild
               variant="ghost"
-              className="h-14 w-full rounded-xl px-6 text-base text-muted-foreground sm:w-auto"
+              className="h-14 w-full rounded-xl px-6 text-base text-muted-foreground hover:bg-brand-soft hover:text-brand-ink sm:w-auto"
             >
               <Link href="/over-ons">Over ons</Link>
             </Button>
@@ -75,8 +75,10 @@ export default function HomePage() {
       <div data-header-reveal aria-hidden="true" />
 
       {/* Tarieven. The three prices are the thing most visitors come for, so they
-          get their own full-width band right under the hero. */}
-      <section className="border-t bg-band">
+          get their own full-width band right under the hero. The seams between
+          the sections carry the orange from here down, so the page is stitched
+          together in the accent rather than in gray. */}
+      <section className="border-t border-brand-line bg-band">
         <div className="container-page py-16 sm:py-24">
           <p className="eyebrow">Tarieven</p>
 
@@ -84,14 +86,17 @@ export default function HomePage() {
               service and its price on one baseline, with a rule between them. */}
           <ul className="mt-8 grid gap-0 sm:mt-10 md:grid-cols-3 md:gap-8">
             {services.map((service) => (
+              // The rule over each price is the accent's heaviest use on the
+              // page: three orange hairlines, side by side from md, over the
+              // three numbers people came to read.
               <li
                 key={service.title}
-                className="flex items-baseline justify-between gap-4 border-t py-5 md:flex-col md:items-start md:gap-3 md:py-0 md:pt-6"
+                className="flex items-baseline justify-between gap-4 border-t border-brand-line py-5 md:flex-col md:items-start md:gap-3 md:py-0 md:pt-6"
               >
                 <h2 className="text-lg font-medium tracking-tight text-balance sm:text-xl">
                   {service.title}
                 </h2>
-                <p className="shrink-0 text-2xl font-medium tracking-tight tabular-nums sm:text-3xl">
+                <p className="shrink-0 text-2xl font-medium tracking-tight text-brand-ink tabular-nums sm:text-3xl">
                   {service.price}
                 </p>
               </li>
@@ -101,8 +106,10 @@ export default function HomePage() {
       </section>
 
       {/* Openingstijden. Its own band under the tarieven, same rhythm — the two
-          questions a walk-in has, answered back to back. */}
-      <section className="border-t">
+          questions a walk-in has, answered back to back. The rows stay in gray:
+          the orange is spent on the prices one section up, and spending it
+          twice in a row would make it mean nothing in either. */}
+      <section className="border-t border-brand-line">
         <div className="container-page py-16 sm:py-20">
           <p className="eyebrow">Openingstijden</p>
 
@@ -130,7 +137,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t">
+      <section className="border-t border-brand-line">
         <div className="container-page py-16 sm:py-20">
 
           {/* Two up on phones, four across from lg — however many photos
@@ -142,14 +149,17 @@ export default function HomePage() {
                 // Keyed by position: the same photo may legitimately be listed
                 // twice, so `src` is not unique.
                 key={index}
-                className="relative aspect-3/4 overflow-hidden rounded-xl bg-muted"
+                // The ring sits on the frame rather than the image, so it stays
+                // put while the photo scales under it — and it's inset, so it
+                // reads as an orange edge on the photo, not a border around it.
+                className="group relative aspect-3/4 overflow-hidden rounded-xl bg-muted inset-ring-brand transition-shadow duration-300 hover:inset-ring-2"
               >
                 <Image
                   src={photo.src}
                   alt={photo.alt}
                   fill
                   sizes="(min-width: 1024px) 25vw, 50vw"
-                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </li>
             ))}
@@ -158,15 +168,16 @@ export default function HomePage() {
       </section>
 
       {/* The one inverted band on the page. Everything above it is white, so
-          the close reads as a full stop — and the button flips to white on
-          black without a variant, because `dark` swaps the primary tokens. */}
-      <section className="dark border-t bg-background text-foreground">
+          the close reads as a full stop — and the orange, which has been a
+          hairline everywhere above, finally arrives as a filled button on
+          black, where it is the only colour left on the page. */}
+      <section className="dark border-t-2 border-brand bg-background text-foreground">
         <div className="container-page flex flex-col items-center gap-6 py-20 text-center sm:gap-8 sm:py-28">
           <p className="eyebrow justify-center">Reserveren</p>
           <h2 className="max-w-lg text-2xl font-medium tracking-tight text-balance sm:text-4xl">
             Boek online een afspraak!
           </h2>
-          <Button asChild className={ctaClassName}>
+          <Button asChild variant="brand" className={ctaClassName}>
             <Link href="/maak-een-afspraak">Maak een afspraak</Link>
           </Button>
         </div>

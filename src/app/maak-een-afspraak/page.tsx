@@ -24,11 +24,11 @@ export default function MaakEenAfspraakPage() {
       <div className="mt-12 grid gap-12 sm:mt-14 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-16">
         <ReservationForm />
 
-        <aside className="lg:border-l lg:pl-10">
+        <aside className="lg:border-l lg:border-brand-line lg:pl-10">
           <h2 className="eyebrow">Waar vind je ons</h2>
           <p className="mt-4 flex gap-3 text-sm leading-relaxed">
             <MapPin
-              className="mt-0.5 size-4 shrink-0 text-muted-foreground"
+              className="mt-0.5 size-4 shrink-0 text-brand-ink"
               aria-hidden="true"
             />
             <span>
@@ -41,7 +41,7 @@ export default function MaakEenAfspraakPage() {
             href={googleMapsDirectionsUrl}
             target="_blank"
             rel="noreferrer"
-            className="mt-4 inline-block text-sm underline underline-offset-4 transition-opacity hover:opacity-70"
+            className="mt-4 inline-block text-sm underline decoration-brand underline-offset-4 transition-colors hover:text-brand-ink"
           >
             Route naar {formattedAddress}
           </a>

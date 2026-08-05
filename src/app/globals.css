@@ -9,6 +9,8 @@
   --color-foreground: var(--foreground);
   --color-brand: var(--brand);
   --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-line: var(--brand-line);
   --color-band: var(--band);
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
@@ -71,10 +73,23 @@
      Each theme sets its own; on dark the vivid orange already passes. */
   --brand-ink: oklch(0.55 0.155 42);
 
+  /* The orange at wash strength — a tint of the page rather than a colour of
+     its own. It backs the panels and hover states that should read warm without
+     ever competing with the type sitting on them. */
+  --brand-soft: color-mix(in oklch, var(--brand) 11%, var(--background));
+
+  /* And at hairline strength. The whole layout is drawn in 1px rules, so the
+     accent has to exist as a border too, or it can only ever arrive as text.
+     Warmer than --border, still quiet enough to run down a column of them. */
+  --brand-line: color-mix(in oklch, var(--brand) 40%, var(--border));
+
   /* The one raised gray on the site: the tarieven band and the header wear it,
      and they have to be the same shade. Flattened rather than translucent,
      because the header floats over the page and can't let it show through.
-     Mixed in srgb, weighted so the band still separates from a white page.
+     Mixed in srgb, weighted so the band still separates from a white page —
+     on the light theme this lands on exactly #F4F4F4. Deliberately neutral:
+     the orange on these two surfaces is carried by the rules and the type, and
+     tinting the surface underneath them as well washes both out.
      Both vars resolve at the point of use, so this follows the active theme. */
   --band: color-mix(in srgb, var(--muted) 75%, var(--background));
 
@@ -126,6 +141,11 @@
   --foreground: oklch(0.985 0 0);
   /* On black the vivid orange already clears 6:1, so ink and mark are one. */
   --brand-ink: var(--brand);
+  /* Restated rather than inherited: a custom property resolves its var()s where
+     it is declared, so the copies on :root carry the white page's background
+     and border. These re-resolve against the black ones. */
+  --brand-soft: color-mix(in oklch, var(--brand) 16%, var(--background));
+  --brand-line: color-mix(in oklch, var(--brand) 45%, transparent);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);

@@ -10,6 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/80",
+        // The booking call to action, in the salon's orange. The label is fixed
+        // near-black rather than a token: this button keeps its fill on the dark
+        // bands too, so white-on-orange would be the one place the text stops
+        // clearing contrast. Hover deepens rather than fades — on black, /80
+        // would wash the fill toward the background instead of away from it.
+        brand:
+          "bg-brand text-[oklch(0.145_0_0)] hover:bg-[color-mix(in_oklch,var(--brand),black_12%)]",
         outline:
           "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         secondary:

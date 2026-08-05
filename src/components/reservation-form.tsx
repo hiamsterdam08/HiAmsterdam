@@ -112,8 +112,10 @@ export function ReservationForm() {
 
   if (state.status === "success") {
     return (
-      <div className="rounded-xl border p-6 sm:p-8">
-        <CircleCheck className="size-6 text-foreground" aria-hidden="true" />
+      // The confirmation is the one panel on the site with a filled background:
+      // it replaces a whole form, so it has to look like something happened.
+      <div className="rounded-xl border border-brand-line bg-brand-soft p-6 sm:p-8">
+        <CircleCheck className="size-6 text-brand-ink" aria-hidden="true" />
         <h2 className="mt-4 text-lg font-medium tracking-tight">
           Aanvraag verstuurd
         </h2>
@@ -257,7 +259,10 @@ export function ReservationForm() {
                     type="button"
                     role="option"
                     aria-selected={slot === time}
-                    variant={slot === time ? "default" : "ghost"}
+                    // The chosen slot is orange rather than black: it is the
+                    // one filled thing in a grid of forty, and the same fill
+                    // the submit button below it wears.
+                    variant={slot === time ? "brand" : "ghost"}
                     className="h-9 justify-center tabular-nums"
                     onClick={() => {
                       setTime(slot)
@@ -301,6 +306,7 @@ export function ReservationForm() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <Button
           type="submit"
+          variant="brand"
           disabled={pending}
           className="h-12 w-full rounded-xl px-8 text-base sm:w-auto"
         >
