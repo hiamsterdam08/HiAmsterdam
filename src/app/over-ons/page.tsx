@@ -15,9 +15,7 @@ export default function OverOnsPage() {
   return (
     <main>
       <section className="container-page py-14 sm:py-20">
-        <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-          Over ons
-        </p>
+        <p className="eyebrow">Over ons</p>
         <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight text-balance sm:text-5xl">
           Een vaste stoel in Amsterdam-Oost
         </h1>
@@ -48,9 +46,7 @@ export default function OverOnsPage() {
 
       <section className="border-t">
         <div className="container-page py-14 sm:py-16">
-          <h2 className="font-sans text-xs font-medium tracking-[0.22em] text-brand uppercase">
-            Wat we doen
-          </h2>
+          <h2 className="eyebrow">Wat we doen</h2>
           <div className="mt-8 grid gap-8 sm:grid-cols-3 sm:gap-10">
             {services.map((service) => (
               <div key={service.title} className="border-t pt-4 sm:pt-5">

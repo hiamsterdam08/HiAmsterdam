@@ -8,6 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
   --color-band: var(--band);
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
@@ -60,16 +61,22 @@
   --font-heading: var(--font-serif);
   --font-mono: ui-monospace, SFMono-Regular, monospace;
 
-  /* Barbershop red, taken from the pole on the salon's own facade. Text-safe:
-     5.4:1 on the dark background. */
-  --brand: oklch(0.645 0.2 27);
+  /* Warm orange, taken from the barber pole on the salon's own facade. This is
+     the vivid one: it's for marks, rules and fills, where nothing has to be
+     read off it. */
+  --brand: oklch(0.705 0.185 47);
+
+  /* The same orange dropped to where it clears 4.5:1 on the page background —
+     the eyebrow labels are 12px uppercase, so they can't use the vivid one.
+     Each theme sets its own; on dark the vivid orange already passes. */
+  --brand-ink: oklch(0.55 0.155 42);
 
   /* The one raised gray on the site: the tarieven band and the header wear it,
      and they have to be the same shade. Flattened rather than translucent,
      because the header floats over the page and can't let it show through.
-     Mixed in srgb so it lands exactly where a 40% --muted wash used to.
+     Mixed in srgb, weighted so the band still separates from a white page.
      Both vars resolve at the point of use, so this follows the active theme. */
-  --band: color-mix(in srgb, var(--muted) 40%, var(--background));
+  --band: color-mix(in srgb, var(--muted) 75%, var(--background));
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -82,14 +89,19 @@
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  /* A shade deeper than stock shadcn: the layout is built out of hairlines and
+     washes on a white page, and at 0.97 neither one showed. */
+  --muted: oklch(0.955 0 0);
+  --muted-foreground: oklch(0.505 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.9 0 0);
+  /* Focus rings are the one place the vivid orange is allowed to be loud — it
+     only shows up for keyboard and form use, where being findable beats being
+     quiet. */
+  --ring: var(--brand);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -105,9 +117,15 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/* Not a theme toggle — nothing switches it. It's the ink half of the palette,
+   applied to the sections that are meant to be black: the closing call to
+   action and the footer. Setting the tokens on the element means the element
+   itself is dark too, not just its children. */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
+  /* On black the vivid orange already clears 6:1, so ink and mark are one. */
+  --brand-ink: var(--brand);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
@@ -121,10 +139,8 @@
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
-  /* Focus rings are the one place red is allowed to be loud — it only shows up
-     for keyboard and form use, where being findable beats being quiet. */
   --ring: var(--brand);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
@@ -159,13 +175,26 @@
   h3 {
     @apply font-serif;
   }
-  /* Selecting text is the only red the page shows without being asked. */
   ::selection {
     background-color: var(--brand);
-    color: var(--foreground);
+    color: oklch(0.145 0 0);
   }
 }
 
 @utility container-page {
   @apply mx-auto w-full max-w-6xl px-6 sm:px-8;
+}
+
+/* The label that opens nearly every section. It carries the orange twice: as
+   the text colour at reading contrast, and as a short rule in the vivid tone —
+   on a page this white, tinted 12px type on its own is too little to register
+   as an accent. Sans even when the element is an <h2>, because it labels the
+   section rather than titling it. */
+@utility eyebrow {
+  @apply flex items-center gap-3 font-sans text-xs font-medium tracking-[0.22em] text-brand-ink uppercase;
+
+  &::before {
+    @apply h-px w-6 shrink-0 bg-brand;
+    content: "";
+  }
 }

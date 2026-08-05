@@ -16,9 +16,7 @@ export const metadata: Metadata = {
 export default function MaakEenAfspraakPage() {
   return (
     <main className="container-page py-14 sm:py-20">
-      <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-        Reserveren
-      </p>
+      <p className="eyebrow">Reserveren</p>
       <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight text-balance sm:text-5xl">
         Maak een afspraak
       </h1>
@@ -27,9 +25,7 @@ export default function MaakEenAfspraakPage() {
         <ReservationForm />
 
         <aside className="lg:border-l lg:pl-10">
-          <h2 className="font-sans text-xs font-medium tracking-[0.22em] text-brand uppercase">
-            Waar vind je ons
-          </h2>
+          <h2 className="eyebrow">Waar vind je ons</h2>
           <p className="mt-4 flex gap-3 text-sm leading-relaxed">
             <MapPin
               className="mt-0.5 size-4 shrink-0 text-muted-foreground"

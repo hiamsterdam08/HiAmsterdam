@@ -5,7 +5,10 @@ import { googleMapsDirectionsUrl, navLinks, siteConfig } from "@/lib/site"
 
 export function SiteFooter() {
   return (
-    <footer className="border-t">
+    // Dark, like the closing band above it on the home page: the two together
+    // are the black base the white pages sit on. `dark` sets the tokens on this
+    // element, so bg-background here is the dark background, not the page's.
+    <footer className="dark border-t bg-background text-foreground">
       <div className="container-page flex flex-col gap-10 py-12 sm:py-14">
         <div className="flex flex-col gap-8 sm:flex-row sm:justify-between sm:gap-12">
           <div>

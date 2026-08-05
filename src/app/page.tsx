@@ -32,18 +32,19 @@ export default function HomePage() {
             sizes="100vw"
             className="object-cover object-center"
           />
-          {/* Scrim weighted to the bottom, where the copy sits — the top of the
-              frame stays clear so the photo itself reads. */}
+          {/* The scrim lightens the photo now rather than darkening it, so it
+              runs the other way round: clear at the top, where the photo keeps
+              its full strength and gives the hero its blacks, down to solid
+              white at the bottom. On md that white is what the near-black copy
+              sits on; on phones it's the seam into the copy block below. */}
           <div
-            className="absolute inset-0 bg-gradient-to-t from-background via-transparent via-35% to-transparent md:via-background/75 md:via-55% md:to-background/15"
+            className="absolute inset-0 bg-gradient-to-t from-background from-12% via-background/45 via-52% to-transparent"
             aria-hidden="true"
           />
         </div>
 
         <div className="container-page relative pt-8 pb-14 sm:pt-10 sm:pb-16 md:[grid-area:1/1] md:self-end md:pt-32 md:pb-28">
-          <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-            Welkom bij
-          </p>
+          <p className="eyebrow">Welkom bij</p>
 
           <h1 className="mt-4 max-w-3xl text-4xl leading-[1.05] font-medium tracking-tight text-balance sm:mt-6 sm:text-6xl sm:leading-[1.02] lg:text-7xl">
             {siteConfig.name}
@@ -77,9 +78,7 @@ export default function HomePage() {
           get their own full-width band right under the hero. */}
       <section className="border-t bg-band">
         <div className="container-page py-16 sm:py-24">
-          <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-            Tarieven
-          </p>
+          <p className="eyebrow">Tarieven</p>
 
           {/* Stacked rows on phones, three columns from md. Each row keeps the
               service and its price on one baseline, with a rule between them. */}
@@ -105,9 +104,7 @@ export default function HomePage() {
           questions a walk-in has, answered back to back. */}
       <section className="border-t">
         <div className="container-page py-16 sm:py-20">
-          <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-            Openingstijden
-          </p>
+          <p className="eyebrow">Openingstijden</p>
 
           {/* <dl> so the days really are labels for the hours. The rows stay
               two-column at every width; only the type scale grows. */}
@@ -160,9 +157,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t">
-        <div className="container-page flex flex-col items-center gap-6 py-16 text-center sm:gap-7 sm:py-20">
-          <h2 className="max-w-lg text-2xl font-medium tracking-tight text-balance sm:text-3xl">
+      {/* The one inverted band on the page. Everything above it is white, so
+          the close reads as a full stop — and the button flips to white on
+          black without a variant, because `dark` swaps the primary tokens. */}
+      <section className="dark border-t bg-background text-foreground">
+        <div className="container-page flex flex-col items-center gap-6 py-20 text-center sm:gap-8 sm:py-28">
+          <p className="eyebrow justify-center">Reserveren</p>
+          <h2 className="max-w-lg text-2xl font-medium tracking-tight text-balance sm:text-4xl">
             Boek online een afspraak!
           </h2>
           <Button asChild className={ctaClassName}>

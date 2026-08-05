@@ -14,7 +14,9 @@ import { siteConfig } from "@/lib/site"
 export function SiteLogo({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <Scissors className="size-4 shrink-0 text-brand" aria-hidden="true" />
+      {/* brand-ink rather than brand: at this size the vivid orange goes thin
+          against white. In the dark footer the two resolve to the same tone. */}
+      <Scissors className="size-4 shrink-0 text-brand-ink" aria-hidden="true" />
       <span className="text-sm font-medium tracking-[0.14em] uppercase">
         {siteConfig.shortName}
       </span>

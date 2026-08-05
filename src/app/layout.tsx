@@ -30,9 +30,9 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 }
 
-// Matches the dark --background, so mobile browser chrome blends with the page.
+// Matches --background, so mobile browser chrome blends with the page.
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#ffffff",
 }
 
 export default function RootLayout({
@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="nl"
-      className={`dark ${notoSerif.variable} ${notoSans.variable} h-full antialiased`}
+      className={`${notoSerif.variable} ${notoSans.variable} h-full antialiased`}
     >
       {/* Column layout so the footer sits at the bottom of short pages instead
           of floating mid-screen. */}
