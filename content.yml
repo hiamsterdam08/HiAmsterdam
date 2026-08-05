@@ -1,0 +1,166 @@
+### ==========================================================================
+###  DE INHOUD VAN DE WEBSITE — Kapsalon Hi Amsterdam
+###
+###  Alles in dit bestand staat op de website. Verander hier iets, sla het op,
+###  en de site neemt het over. Je hoeft nergens anders iets aan te passen.
+###
+###  Drie regels om je aan te houden:
+###
+###    1. Laat de inspringing (de spaties aan het begin van een regel) precies
+###       zoals hij is. Gebruik spaties, nooit een tab.
+###    2. Zet tekst altijd tussen "dubbele aanhalingstekens".
+###    3. Regels die met # beginnen zijn uitleg. Die komen niet op de site.
+###
+###  Foto's horen in de map `public/`. Zet hier alleen de bestandsnaam.
+### ==========================================================================
+
+
+### --------------------------------------------------------------------------
+###  De salon: naam en omschrijving
+###
+###  `naam` staat in de titelbalk van de browser en onderaan elke pagina.
+###  `korte_naam` staat in het logo linksboven.
+###  `omschrijving` ziet niemand op de pagina zelf — die gebruikt Google in de
+###  zoekresultaten. Houd hem op één of twee zinnen.
+### --------------------------------------------------------------------------
+salon:
+  naam: "Kapsalon Hi Amsterdam"
+  korte_naam: "Hi Amsterdam"
+  omschrijving: "Kapsalon en barbershop in Amsterdam-Oost. Knippen, baard en kleur, met of zonder afspraak."
+
+
+### --------------------------------------------------------------------------
+###  Contactgegevens
+###
+###  Het adres wordt ook gebruikt voor de kaart en de routebeschrijving op
+###  'Over ons' — je hoeft die niet apart bij te werken.
+###
+###  Bij `telefoon` staan twee versies van hetzelfde nummer:
+###    `weergave` is wat bezoekers lezen — schrijf het zoals je het zelf zegt.
+###    `bellen`   is waar de telefoon op belt. Altijd +31 en verder alleen
+###               cijfers, zonder spaties. Vergeet deze niet mee te wijzigen.
+### --------------------------------------------------------------------------
+contact:
+  straat: "Zeeburgerstraat 12 H"
+  postcode: "1018 AG"
+  plaats: "Amsterdam"
+
+  telefoon:
+    weergave: "+31 6 84 13 00 20"
+    bellen: "+31684130020"
+
+  email: "contact@hiamsterdamkapsalon.nl"
+
+
+### --------------------------------------------------------------------------
+###  Openingstijden
+###
+###  Vul per dag in hoe laat je open- en dichtgaat, in 24-uursnotatie ("09:30",
+###  "19:00"). Is de salon die dag dicht, schrijf dan alleen het woord
+###  gesloten — zonder aanhalingstekens, zoals bij zondag hieronder.
+###
+###  De website vat opeenvolgende dagen met dezelfde tijden vanzelf samen tot
+###  "Maandag t/m vrijdag". Je hoeft daar zelf niets voor te doen: zet je
+###  woensdag op andere tijden, dan splitst de site de regel automatisch.
+###
+###  Deze tijden bepalen ook welke tijdstippen bezoekers kunnen kiezen in het
+###  afspraakformulier.
+### --------------------------------------------------------------------------
+openingstijden:
+  maandag:
+    open: "09:30"
+    dicht: "19:00"
+  dinsdag:
+    open: "09:30"
+    dicht: "19:00"
+  woensdag:
+    open: "09:30"
+    dicht: "19:00"
+  donderdag:
+    open: "09:30"
+    dicht: "19:00"
+  vrijdag:
+    open: "09:30"
+    dicht: "19:00"
+  zaterdag:
+    open: "09:00"
+    dicht: "18:30"
+  zondag: gesloten
+
+
+### --------------------------------------------------------------------------
+###  Tarieven
+###
+###  Deze lijst staat op de homepage onder 'Tarieven' en op 'Over ons' onder
+###  'Wat we doen'. Elke regel die met "- dienst:" begint is één tarief.
+###
+###  Een tarief toevoegen: kopieer een blokje van twee regels en pas het aan.
+###  Een tarief weghalen: verwijder allebei de regels.
+###  De volgorde hier is de volgorde op de site.
+###
+###  Schrijf de prijs precies zoals hij op de site moet staan, dus met een
+###  euroteken en een komma: "€ 26,50".
+### --------------------------------------------------------------------------
+tarieven:
+  - dienst: "Haar knippen met schaar"
+    prijs: "€ 26,50"
+
+  - dienst: "Baard knippen"
+    prijs: "€ 16,50"
+
+  - dienst: "Haar wassen en drogen"
+    prijs: "€ 17,50"
+
+
+### --------------------------------------------------------------------------
+###  Behandelingen in het afspraakformulier
+###
+###  Dit zijn de keuzes in het uitklapmenu 'Behandeling' op 'Maak een
+###  afspraak'. Ze staan los van de tarieven hierboven: hier hoeft geen prijs
+###  bij, en de indeling mag grover zijn.
+###
+###  Let op: een behandeling die je hier weghaalt, kan niemand meer boeken.
+### --------------------------------------------------------------------------
+behandelingen:
+  - "Haar"
+  - "Baard"
+  - "Kinderen tot 10 jaar"
+  - "Haar en wassen"
+
+
+### --------------------------------------------------------------------------
+###  Foto's
+###
+###  Zet de foto eerst in de map `public/`, en schrijf hier de bestandsnaam
+###  zoals hij daar staat — inclusief .jpg of .jpeg, en let op hoofdletters.
+###
+###  De `beschrijving` is voor bezoekers die de foto niet kunnen zien (en voor
+###  Google). Schrijf op wat er te zien is, niet "foto van de salon".
+### --------------------------------------------------------------------------
+fotos:
+
+  # De grote foto bovenaan de homepage, achter de welkomsttekst. Een liggende
+  # foto werkt hier het best.
+  homepage_groot:
+    bestand: "nate-johnston-tgPrIYnW3g4-unsplash.jpg"
+    beschrijving: "Kapper knipt met kam en schaar het haar van een klant"
+
+  # De strook foto's onderaan de homepage. Vier staande foto's vullen de rij
+  # precies; meer mag ook, dan komt er een rij bij.
+  homepage_strook:
+    - bestand: "salon-gevel.jpeg"
+      beschrijving: "De gevel van de salon aan de Zeeburgerstraat, met barberspaal naast de deur"
+
+    - bestand: "krullen-taper-fade.jpeg"
+      beschrijving: "Krullend haar met een strakke taper fade en een geschoren lijn boven het oor"
+
+    - bestand: "kleuring-groen.jpeg"
+      beschrijving: "Klant met fel groen gekleurd haar, gezien vanaf de kappersstoel bij het raam"
+
+    - bestand: "textuur-coupe.jpeg"
+      beschrijving: "Getextureerde coupe met korte zijkanten, afgewerkt in de salon"
+
+  # De staande foto rechts bovenaan de pagina 'Over ons'.
+  over_ons:
+    bestand: "salon-gevel.jpeg"
+    beschrijving: "De gevel van Kapsalon Hi Amsterdam aan de Zeeburgerstraat, met barberspaal naast de deur"

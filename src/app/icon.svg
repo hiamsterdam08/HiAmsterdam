@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- The same lucide scissors the header wears, on the page's own background.
+       Colours are hard-coded rather than driven by the theme tokens: a favicon
+       renders outside the document, so those custom properties are not in scope.
+       #0a0a0a is the dark background token, #ef4d45 the brand red in sRGB. -->
+  <rect width="32" height="32" rx="7" fill="#0a0a0a"/>
+  <!-- Lucide draws on a 24 grid; the scissors' inked bounds (strokes included)
+       run x 2.05-20.95, y 2.05-21.95, so this scales that box up to leave an
+       even ~3px margin and nudges it back to the centre of the tile. -->
+  <g transform="translate(1.05 0.4) scale(1.3)" fill="none" stroke="#ef4d45" stroke-width="1.9"
+     stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="6" cy="6" r="3"/>
+    <path d="M8.12 8.12 12 12"/>
+    <path d="M20 4 8.12 15.88"/>
+    <circle cx="6" cy="18" r="3"/>
+    <path d="M14.8 14.8 20 20"/>
+  </g>
+</svg>

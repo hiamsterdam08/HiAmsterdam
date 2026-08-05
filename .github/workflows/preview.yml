@@ -1,0 +1,75 @@
+# Bouwt de site en zet hem als preview op GitHub Pages.
+#
+# Draait bij elke wijziging op `main` — dus ook als iemand content.yml
+# aanpast via de knop "Edit" op github.com. Een paar minuten later staat de
+# nieuwe versie online.
+#
+# De preview is er om de site te bekijken, niet om afspraken aan te nemen:
+# GitHub Pages serveert alleen bestanden en kan geen formulier verwerken.
+# Het afspraakformulier op de preview controleert wat je invult en toont de
+# bevestiging, maar stuurt de aanvraag nergens naartoe.
+
+name: Preview op GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Zet er ook een handmatige knop bij, onder Actions → Preview op GitHub Pages.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Eén deploy tegelijk. Push je twee keer snel achter elkaar, dan wint de
+# laatste in plaats van dat ze door elkaar heen lopen.
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # Levert het pad waaronder GitHub Pages de site publiceert: "/HiAmsterdam"
+      # voor een gewone repo, leeg voor een <naam>.github.io-repo. De site moet
+      # dat weten, anders wijzen alle links en foto's naar de verkeerde plek.
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - run: npm ci
+
+      # `npm run build` draait eerst scripts/generate-content.mjs. Staat er een
+      # fout in content.yml, dan stopt de build hier met een uitleg in het log
+      # en blijft de vorige preview gewoon staan.
+      - name: Bouw de site
+        env:
+          NEXT_PUBLIC_STATIC_EXPORT: "1"
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: npm run build
+
+      # Zonder dit bestand draait GitHub Pages de map _next/ door Jekyll, dat
+      # mappen met een underscore overslaat — en dan mist de site alle styling.
+      - run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
