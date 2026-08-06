@@ -22,11 +22,16 @@ permissions:
   pages: write
   id-token: write
 
-# Eén deploy tegelijk. Push je twee keer snel achter elkaar, dan wint de
-# laatste in plaats van dat ze door elkaar heen lopen.
+# Eén deploy tegelijk. Push je twee keer snel achter elkaar, dan wacht de
+# tweede netjes tot de eerste klaar is, in plaats van dat ze door elkaar heen
+# lopen.
+#
+# Niet op `true` zetten: dit blok geldt ook voor het publiceren zelf. Breekt
+# een tweede run die halverwege af, dan stopt de deploy met de melding
+# "Error: Deployment cancelled" en staat de site niet online.
 concurrency:
   group: github-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
