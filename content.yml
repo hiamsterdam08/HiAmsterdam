@@ -102,13 +102,13 @@ openingstijden:
 ###  euroteken en een komma: "€ 26,50".
 ### --------------------------------------------------------------------------
 tarieven:
-  - dienst: "Haar knippen met schaar"
+  - dienst: "Heren knippen"
     prijs: "€ 26,50"
 
-  - dienst: "Baard knippen"
-    prijs: "€ 16,50"
+  - dienst: "Heren knippen + wassen"
+    prijs: "€ 32,50"
 
-  - dienst: "Haar wassen en drogen"
+  - dienst: "Heren wassen + drogen"
     prijs: "€ 17,50"
 
 
@@ -122,10 +122,9 @@ tarieven:
 ###  Let op: een behandeling die je hier weghaalt, kan niemand meer boeken.
 ### --------------------------------------------------------------------------
 behandelingen:
-  - "Haar"
-  - "Baard"
-  - "Kinderen tot 10 jaar"
-  - "Haar en wassen"
+  - "Heren knippen"
+  - "Heren knippen + wassen"
+  - "Heren wassen + drogen"
 
 
 ### --------------------------------------------------------------------------
