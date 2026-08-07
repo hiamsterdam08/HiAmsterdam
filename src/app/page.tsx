@@ -74,7 +74,7 @@ export default function HomePage() {
           slides in below it. Zero-height, so it costs the layout nothing. */}
       <div data-header-reveal aria-hidden="true" />
 
-      {/* Tarieven. The three prices are the thing most visitors come for, so they
+      {/* Tarieven. The prices are the thing most visitors come for, so they
           get their own full-width band right under the hero. The seams between
           the sections carry the orange from here down, so the page is stitched
           together in the accent rather than in gray. */}
@@ -82,13 +82,12 @@ export default function HomePage() {
         <div className="container-page py-16 sm:py-24">
           <p className="eyebrow">Tarieven</p>
 
-          {/* Stacked rows on phones, three columns from md. Each row keeps the
+          {/* Stacked rows on phones, two columns from md. Each row keeps the
               service and its price on one baseline, with a rule between them. */}
-          <ul className="mt-8 grid gap-0 sm:mt-10 md:grid-cols-3 md:gap-8">
+          <ul className="mt-8 grid gap-0 sm:mt-10 md:grid-cols-2 md:gap-8">
             {services.map((service) => (
               // The rule over each price is the accent's heaviest use on the
-              // page: three orange hairlines, side by side from md, over the
-              // three numbers people came to read.
+              // page: an orange hairline over every number people came to read.
               <li
                 key={service.title}
                 className="flex items-baseline justify-between gap-4 border-t border-brand-line py-5 md:flex-col md:items-start md:gap-3 md:py-0 md:pt-6"

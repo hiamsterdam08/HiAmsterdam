@@ -20,10 +20,17 @@ export default function OverOnsPage() {
           Een vaste stoel in Amsterdam
         </h1>
 
-        {/* Placeholder copy — replace with the real thing. */}
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,340px)] lg:gap-16">
           <div className="flex flex-col gap-5 text-base leading-relaxed text-muted-foreground">
-            <p>Uw text hier</p>
+            <p>
+              Hi Amsterdam is een kapsalon en barbershop aan de
+              Zeeburgerstraat. Knippen, wassen, baard. We nemen de tijd voor
+              je en luisteren eerst.
+            </p>
+            <p>
+              Loop gerust binnen, of maak een afspraak zodat de stoel voor je
+              klaarstaat.
+            </p>
 
             <div className="mt-2">
               <Button
@@ -48,13 +55,13 @@ export default function OverOnsPage() {
         </div>
       </section>
 
-      {/* Same three services as the homepage tarieven, so they wear the same
+      {/* The same services as the homepage tarieven, so they wear the same
           orange rule and the same orange price — a visitor arriving here first
           should recognise the block when they meet it there. */}
       <section className="border-t border-brand-line">
         <div className="container-page py-14 sm:py-16">
           <h2 className="eyebrow">Wat we doen</h2>
-          <div className="mt-8 grid gap-8 sm:grid-cols-3 sm:gap-10">
+          <div className="mt-8 grid gap-8 sm:grid-cols-2 sm:gap-10">
             {services.map((service) => (
               <div
                 key={service.title}

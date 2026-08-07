@@ -111,6 +111,9 @@ tarieven:
   - dienst: "Heren wassen + drogen"
     prijs: "€ 17,50"
 
+  - dienst: "Baard knippen en trimmen"
+    prijs: "€ 26,50"
+
 
 ### --------------------------------------------------------------------------
 ###  Behandelingen in het afspraakformulier
@@ -125,6 +128,7 @@ behandelingen:
   - "Heren knippen"
   - "Heren knippen + wassen"
   - "Heren wassen + drogen"
+  - "Baard knippen en trimmen"
 
 
 ### --------------------------------------------------------------------------

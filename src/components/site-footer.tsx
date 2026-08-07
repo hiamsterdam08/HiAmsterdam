@@ -64,7 +64,14 @@ export function SiteFooter() {
           </p>
           <p>
             Website gemaakt door{" "}
-            <span className="text-foreground">GoldenCoil</span>
+            <a
+              href="https://goldencoil.nl"
+              target="_blank"
+              rel="noreferrer"
+              className="text-foreground underline decoration-brand underline-offset-4 transition-colors hover:text-brand"
+            >
+              GoldenCoil
+            </a>
           </p>
         </div>
       </div>
