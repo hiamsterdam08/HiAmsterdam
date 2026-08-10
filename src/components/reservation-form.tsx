@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
-import { initialReservationState } from "@/lib/reservation"
+import { honeypotField, initialReservationState } from "@/lib/reservation"
 import { bookingWindow, serviceOptions } from "@/lib/site"
 
 // The shadcn Input/Textarea default to a compact height meant for dense UI; a
@@ -128,6 +128,21 @@ export function ReservationForm() {
 
   return (
     <form action={formAction} className="flex flex-col gap-6">
+      {/* A bot fills in every field it finds; nobody else can see this one.
+          `hidden` keeps it out of the page and away from screen readers, and
+          the negative tabIndex out of the keyboard path. The Server Action
+          drops any submission that arrives with it set. */}
+      <div hidden aria-hidden="true">
+        <Label htmlFor={fieldId(honeypotField)}>Website</Label>
+        <Input
+          id={fieldId(honeypotField)}
+          name={honeypotField}
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
           <Label htmlFor={fieldId("name")}>Naam</Label>

@@ -66,7 +66,8 @@ for that build.
 
 So the preview is for looking at the site. A deployment that also takes bookings
 needs a host that runs Node (Vercel, Netlify, your own server), where the real
-Server Action is used.
+Server Action runs and mails the aanvraag to the salon — see
+[Environment variables](#environment-variables).
 
 ## Project structure
 
@@ -90,7 +91,18 @@ src/
 
 ## Environment variables
 
-See `.env.example`. Both are optional: without a key the reviews section falls
+See `.env.example`.
+
+`RESEND_API_KEY` is the only one the site needs: it is what puts a booking
+request in the salon's mailbox. Without it the form still validates, but it
+tells the visitor the aanvraag could not be sent and to phone instead, and the
+reason lands in the host's function log.
+
+`RESERVATION_TO` and `RESERVATION_FROM` are overrides for testing. Unset, the
+mail goes to the address in `content.yml` — so handing the site over to the
+salon's own Resend account means changing environment variables, never code.
+
+The two Google variables are optional: without a key the reviews section falls
 back to a link to Google, and the map on `/over-ons` needs no key at all.
 
 ## shadcn/ui

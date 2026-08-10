@@ -11,6 +11,7 @@
 // is for reviewing the design rather than for taking bookings.
 
 import {
+  honeypotField,
   readReservation,
   reservationReceived,
   validateReservation,
@@ -22,6 +23,8 @@ export async function createReservation(
   formData: FormData
 ): Promise<ReservationState> {
   const reservation = readReservation(formData)
+
+  if (formData.get(honeypotField)) return reservationReceived(reservation)
 
   const errors = validateReservation(reservation)
   if (errors) return errors

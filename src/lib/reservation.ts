@@ -7,7 +7,7 @@
 // `actions.static.ts`) checks a submission exactly the way the server does,
 // instead of drifting into a second, laxer copy.
 
-import { serviceOptions } from "@/lib/site"
+import { serviceOptions, siteConfig } from "@/lib/site"
 
 export type ReservationState = {
   status: "idle" | "success" | "error"
@@ -30,6 +30,12 @@ export type Reservation = {
   time: string
   notes: string
 }
+
+/** Name of the field the booking form hides from people. The Server Action is
+ *  a public POST endpoint that now sends mail, so it needs a cheap way to tell
+ *  a bot from a visitor: anything that arrives with this field filled in was
+ *  not typed by someone who could see the page. */
+export const honeypotField = "website"
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 // Dutch numbers with optional +31, spaces, dashes or parentheses.
@@ -104,6 +110,17 @@ export function validateReservation(
     status: "error",
     message: "Er ontbreekt nog iets. Check de gemarkeerde velden.",
     fieldErrors,
+  }
+}
+
+/** The mail did not go out, so nobody at the salon has seen the aanvraag.
+ *  Say that, and point at the phone — a confirmation for a request that never
+ *  arrived is the one outcome worse than an error. */
+export function reservationFailed(): ReservationState {
+  return {
+    status: "error",
+    message: `Het versturen is helaas mislukt. Probeer het nog een keer, of bel ons op ${siteConfig.phone.display}.`,
+    fieldErrors: {},
   }
 }
 
