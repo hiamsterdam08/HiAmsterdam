@@ -13,3 +13,11 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+  # Netlify's secret-scanner controleert of de waarde van een omgevings-
+  # variabele ergens in de repo of de build-output staat, en breekt de build
+  # af als dat zo is. Voor RESEND_API_KEY is dat precies goed. Maar het
+  # afzender- en ontvangeradres zijn geen geheimen — ze staan in de kop van
+  # elke verstuurde mail — en ze staan als voorbeeld in .env.example en
+  # content.yml. Zonder deze regel faalt de build daarop.
+  SECRETS_SCAN_OMIT_KEYS = "RESERVATION_FROM,RESERVATION_TO"
