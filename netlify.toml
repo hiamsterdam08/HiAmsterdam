@@ -1,0 +1,15 @@
+# Netlify bouwt en host de echte site — met een Node-runtime, dus mét het
+# afspraakformulier dat de aanvraag mailt. (De GitHub Pages-workflow in
+# .github/workflows/preview.yml blijft een statische preview zonder mail.)
+#
+# Let op: zet NEXT_PUBLIC_STATIC_EXPORT hier of in de Netlify-omgeving nooit
+# op "1". Dan bouwt Next een statische export en wordt het formulier
+# vervangen door de stand-in die niets verstuurt.
+
+[build]
+  # Draait eerst scripts/generate-content.mjs (prebuild) en dan next build.
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
