@@ -44,6 +44,11 @@ class ContentError extends Error {}
  *  the owner everything that needs fixing. */
 const problems = []
 
+/** Things worth saying out loud that are not mistakes. The site still builds;
+ *  these are printed after a successful run so a silent surprise — a
+ *  behandeling that ended up without a price — is at least mentioned. */
+const notices = []
+
 function problem(where, message) {
   problems.push(`  ${where}\n    ${message}`)
 }
@@ -218,7 +223,12 @@ function readPrices(raw) {
   })
 }
 
-function readTreatments(raw) {
+/** The choices in the booking form's dropdown. A behandeling is still written
+ *  as one plain line; the price beside it in the dropdown is looked up from the
+ *  tarief with the same name, so no price is ever written twice and the two
+ *  lists cannot drift apart. A behandeling that matches no tarief — a coarser
+ *  grouping like "Kleuren" — keeps working and simply shows without a price. */
+function readTreatments(raw, prices) {
   const list = raw?.behandelingen
 
   if (!Array.isArray(list) || list.length === 0) {
@@ -229,9 +239,29 @@ function readTreatments(raw) {
     return []
   }
 
-  return list.map((entry, index) =>
-    requireText(entry, `behandelingen → nummer ${index + 1}`)
-  )
+  // Case- and space-insensitive, because "Heren Knippen " and "Heren knippen"
+  // are the same treatment to everyone except a string comparison.
+  const key = (title) => title.toLowerCase().replace(/\s+/g, " ")
+  const priceFor = new Map(prices.map((entry) => [key(entry.title), entry.price]))
+
+  const treatments = list.map((entry, index) => {
+    const title = requireText(entry, `behandelingen → nummer ${index + 1}`)
+    return { title, price: priceFor.get(key(title)) ?? "" }
+  })
+
+  const unpriced = treatments
+    .filter((entry) => entry.title && !entry.price)
+    .map((entry) => entry.title)
+
+  if (unpriced.length > 0) {
+    notices.push(
+      `Zonder prijs in het afspraakformulier: ${unpriced.join(", ")}.\n` +
+        `           Wil je daar wél een prijs bij, zet de behandeling dan met precies dezelfde\n` +
+        `           naam onder tarieven.`
+    )
+  }
+
+  return treatments
 }
 
 function readPhotos(raw) {
@@ -273,13 +303,17 @@ function build() {
   }
 
   problems.length = 0
+  notices.length = 0
+
+  // Tarieven first: the behandelingen borrow their prices from it.
+  const prices = readPrices(raw)
 
   const content = {
     salon: readSalon(raw),
     contact: readContact(raw),
     openingHours: readOpeningHours(raw),
-    prices: readPrices(raw),
-    treatments: readTreatments(raw),
+    prices,
+    treatments: readTreatments(raw, prices),
     photos: readPhotos(raw),
   }
 
@@ -318,6 +352,9 @@ function run({ tolerateErrors }) {
     const changed = write(build())
     if (changed) {
       console.log("[content] src/lib/content.generated.ts bijgewerkt")
+    }
+    for (const notice of notices) {
+      console.warn(`[content] ${notice}`)
     }
     return true
   } catch (error) {

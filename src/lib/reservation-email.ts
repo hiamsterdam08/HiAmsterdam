@@ -9,7 +9,7 @@
 // there.
 
 import type { Reservation } from "@/lib/reservation"
-import { siteConfig } from "@/lib/site"
+import { serviceOptions, siteConfig } from "@/lib/site"
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails"
 
@@ -54,12 +54,23 @@ function subjectFor(reservation: Reservation) {
   return `Afspraakaanvraag — ${reservation.name}, ${formatDate(reservation.date)} om ${reservation.time}`
 }
 
+/** The tarief the chosen behandeling carries in content.yml. Looked up here
+ *  rather than read off the submission: the price beside the behandeling in the
+ *  form is display only and never leaves the browser, so this is the one copy
+ *  that cannot have been edited on the way in. Empty for a behandeling with no
+ *  matching tarief, and the mail then just names the behandeling. */
+function priceFor(service: string) {
+  return serviceOptions.find((option) => option.title === service)?.price ?? ""
+}
+
 function bodyFor(reservation: Reservation) {
+  const price = priceFor(reservation.service)
+
   const lines = [
     ["Naam", reservation.name],
     ["E-mail", reservation.email],
     ["Telefoon", reservation.phone],
-    ["Behandeling", reservation.service],
+    ["Behandeling", price ? `${reservation.service} — ${price}` : reservation.service],
     ["Datum", formatDate(reservation.date)],
     ["Tijd", reservation.time],
   ]

@@ -48,7 +48,13 @@ export const navLinks = [
 export const services = content.prices
 
 /** Feeds the booking form's service dropdown, and the Server Action validates
- *  the submitted behandeling against this same list. */
+ *  the submitted behandeling against this same list.
+ *
+ *  Each entry carries a `price` alongside its `title`: the tarief written under
+ *  the same name in content.yml, so the dropdown can show what a behandeling
+ *  costs without the owner typing the price a second time. It is an empty
+ *  string when no tarief matches, and the dropdown then leaves the price off
+ *  that one row. */
 export const serviceOptions = content.treatments
 
 /** The GitHub Pages preview is served from a repo subpath, and that build turns

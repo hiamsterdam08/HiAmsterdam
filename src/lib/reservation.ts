@@ -85,7 +85,10 @@ export function validateReservation(
     fieldErrors.phone = "Vul een geldig telefoonnummer in."
   }
 
-  if (!(serviceOptions as readonly string[]).includes(reservation.service)) {
+  // Matched on the title alone. The price shown next to it in the dropdown is
+  // display only — it never rides along in the submission, so it cannot be
+  // tampered with on the way here.
+  if (!serviceOptions.some((option) => option.title === reservation.service)) {
     fieldErrors.service = "Kies een behandeling."
   }
 

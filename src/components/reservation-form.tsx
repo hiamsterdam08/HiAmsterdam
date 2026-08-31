@@ -197,8 +197,22 @@ export function ReservationForm() {
             </SelectTrigger>
             <SelectContent className="min-w-(--radix-select-trigger-width)">
               {serviceOptions.map((option) => (
-                <SelectItem key={option} value={option}>
-                  {option}
+                // Radix repeats the item's text inside the closed trigger, so
+                // the price the visitor picked stays visible after the menu
+                // shuts. Widening the text span is what pushes the price to
+                // the right edge in the open menu; the trigger gets its own
+                // copy of these two spans and is unaffected.
+                <SelectItem
+                  key={option.title}
+                  value={option.title}
+                  className="[&>span:last-child]:w-full [&>span:last-child]:justify-between"
+                >
+                  <span>{option.title}</span>
+                  {option.price ? (
+                    <span className="tabular-nums text-muted-foreground">
+                      {option.price}
+                    </span>
+                  ) : null}
                 </SelectItem>
               ))}
             </SelectContent>

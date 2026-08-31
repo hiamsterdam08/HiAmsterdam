@@ -119,8 +119,15 @@ tarieven:
 ###  Behandelingen in het afspraakformulier
 ###
 ###  Dit zijn de keuzes in het uitklapmenu 'Behandeling' op 'Maak een
-###  afspraak'. Ze staan los van de tarieven hierboven: hier hoeft geen prijs
-###  bij, en de indeling mag grover zijn.
+###  afspraak'. Schrijf hier alleen de naam — de prijs vul je nooit twee keer
+###  in.
+###
+###  Staat dezelfde naam namelijk ook bij Tarieven hierboven, dan zet de site
+###  die prijs er in het uitklapmenu vanzelf achter. Verander je de prijs
+###  daarboven, dan verandert hij hier mee.
+###
+###  De indeling mag grover zijn dan de tarieven. Een behandeling die bij geen
+###  enkel tarief hoort, staat gewoon zonder prijs in de lijst.
 ###
 ###  Let op: een behandeling die je hier weghaalt, kan niemand meer boeken.
 ### --------------------------------------------------------------------------
